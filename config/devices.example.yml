@@ -1,0 +1,5 @@
+devices:
+  office:
+    test_bulb:
+      model_class: TradfriLedColorBulb
+      hub_id: 65537
