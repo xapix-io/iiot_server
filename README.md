@@ -89,7 +89,7 @@ Open a new terminal tab, install and start the Xapix External Executor.
 ```
 cd ./iiot/external-executor/
 bundle install
-XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=iiot-office-<RANDOM_CODE> ruby ./iiot/external-executor/device_command.rb
+XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=iiot-office-<RANDOM_CODE> ruby ./device_command.rb
 ```
 
 Installation was successful if you start seeing log messages about the service's connection status.
