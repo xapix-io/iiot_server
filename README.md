@@ -100,7 +100,7 @@ Log into [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add
 {
 	"device": "test_bulb",
 	"action": {
-		"cmd": "bulb_on"
+		"cmd": "bulb_on" # or "bulb_off"
 	}
 }
 ```
