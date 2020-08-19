@@ -48,7 +48,7 @@ git clone https://github.com/xapix-io/iiot_server.git
 cd ./iiot_server/drivers/tradfri
 
 pip3 install -r requirements.txt --user
-HOST=192.168.10.88 python3 setup.py # Dialog asks for <GATEWAY_SECURITY_CODE>, creates a psk.conf file and displays registered devices
+HOST=<GATEWAY_IP> python3 setup.py # Dialog asks for <GATEWAY_SECURITY_CODE>, creates a psk.conf file and displays registered devices
 FLASK_APP=server.py HOST=<GATEWAY_IP> python3 -m flask run
 ```
 
