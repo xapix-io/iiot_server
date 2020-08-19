@@ -94,7 +94,7 @@ XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=iiot-offic
 
 Installation was successful if you start seeing log messages about the service's connection status.
 
-Log into [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add a Data Source of type "External Executor". In field name enter "iiot-office-<RANDOM_CODE>" and set up required payload parameters as needed, e.g.:
+Log into [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add a Data Source of type "External Data Source". In field name enter "iiot-office-<RANDOM_CODE>" and set up required payload parameters as needed, e.g.:
 
 ```
 {
