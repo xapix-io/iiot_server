@@ -47,10 +47,13 @@ Clone the codebase and connect to your gateway hub. The script will list your re
 git clone https://github.com/xapix-io/iiot_server.git
 cd ./iiot_server/drivers/tradfri
 
+sudo bash install-coap-client.sh # compiles from source the required coap-client library
 pip3 install -r requirements.txt --user
-HOST=<GATEWAY_IP> python3 setup.py # Dialog asks for <GATEWAY_SECURITY_CODE>, creates a psk.conf file and displays registered devices
+HOST=<GATEWAY_IP> python3 setup.py # Dialog asks for <GATEWAY_SECURITY_CODE>, creates a psk.conf file in current directory and displays devices registered at your hub and their IDs
 FLASK_APP=server.py HOST=<GATEWAY_IP> python3 -m flask run
 ```
+
+Installation was successful if you see a running localhost Python Flask webserver.
 
 Configure your Home IoT devices for access via the HTTP API.
 
