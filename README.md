@@ -55,17 +55,18 @@ FLASK_APP=server.py HOST=<GATEWAY_IP> python3 -m flask run
 
 Installation was successful if you see a running localhost Python Flask webserver.
 
-Configure your Home IoT devices for access via the HTTP API.
+Configure your Home IoT devices for access via the HTTP API in the file `./config/devices.yml`. In folder `./config/` you'll find an example file you could use as a basis and adjust.
 
-```
-#./config/devices.yml
+```yaml
+# ./config/devices.yml
 
 devices:
-  office:
-    test_bulb: # << name your device here
+  office: # << name your device environment
+    test_bulb: # << name your device
       model_class: TradfriLedColorBulb
       hub_id: <DEVICE_ID_IN_HUB> # << enter the device ID as registered in your gateway hub
     # << add more device entries as needed
+  # << add more device environment entries as needed
 ```
 
 ## HTTP API installation
@@ -75,17 +76,23 @@ bundle install
 bundle exec ruby ./iiot_server.rb office
 ```
 
+Installation was successful if you see a running localhost Ruby Sinatra webserver.
+
 ## Start Xapix External Executor
 
 To enable Xapix pipelines to do your desired actions on your local Home IoT setup, you'll need to run the External Executor. Stopping the process also stops all communication with Xapix servers.
 
 Generate a random code of 6 characters or more, e.g. "1x2y3z", make it as random and unique as you can. 
 
-Open a new terminal tab and start the Xapix External Executor.
+Open a new terminal tab, install and start the Xapix External Executor.
 
 ```
+cd ./iiot/external-executor/
+bundle install
 XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=iiot-office-<RANDOM_CODE> ruby ./iiot/external-executor/device_command.rb
 ```
+
+Installation was successful if you start seeing log messages about the service's connection status.
 
 Log into [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add a Data Source of type "External Executor". In field name enter "iiot-office-<RANDOM_CODE>" and set up required payload parameters as needed, e.g.:
 
