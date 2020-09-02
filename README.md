@@ -63,8 +63,11 @@ Configure your Home IoT devices for access via the HTTP API in the file `./confi
 devices:
   office: # << name your device environment
     test_bulb: # << name your device
-      model_class: TradfriLedColorBulb
+      model_class: TradfriLedColorBulb # Ruby class as in folder ./devices/
       hub_id: <DEVICE_ID_IN_HUB> # << enter the device ID as registered in your gateway hub
+    test_plug:
+      model_class: Hs100
+      ip: 192.168.1.111
     # << add more device entries as needed
   # << add more device environment entries as needed
 ```
