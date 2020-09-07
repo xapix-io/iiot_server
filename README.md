@@ -111,7 +111,9 @@ bundle install
 XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=<Executor-Name-and-ID> ruby ./device_command.rb
 ```
 
-Installation was successful if you start seeing log messages about the service's connection status.
+Installation was successful if you start seeing log messages about the service's connection status in the Terminal.
+
+Back in the Xapix Data Source, you should now get a succesful response when clicking on Preview Data Source and can complete the setup by clicking Save Data Source.  
 
 Now Xapix pipelines can make use of this Data Source and send commands to your local setup as long as the External Executor is running.
 
