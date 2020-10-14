@@ -55,17 +55,21 @@ FLASK_APP=server.py HOST=<GATEWAY_IP> python3 -m flask run
 
 Installation was successful if you see a running localhost Python Flask webserver.
 
-Configure your Home IoT devices for access via the HTTP API.
+Configure your Home IoT devices for access via the HTTP API in the file `./config/devices.yml`. In folder `./config/` you'll find an example file you could use as a basis and adjust.
 
-```
-#./config/devices.yml
+```yaml
+# ./config/devices.yml
 
 devices:
-  office:
-    test_bulb: # << name your device here
-      model_class: TradfriLedColorBulb
+  office: # << name your device environment
+    test_bulb: # << name your device
+      model_class: TradfriLedColorBulb # Ruby class as in folder ./devices/
       hub_id: <DEVICE_ID_IN_HUB> # << enter the device ID as registered in your gateway hub
+    test_plug:
+      model_class: Hs100
+      ip: 192.168.1.111
     # << add more device entries as needed
+  # << add more device environment entries as needed
 ```
 
 ## HTTP API installation
@@ -75,28 +79,41 @@ bundle install
 bundle exec ruby ./iiot_server.rb office
 ```
 
+Installation was successful if you see a running localhost Ruby Sinatra webserver.
+
 ## Start Xapix External Executor
 
-To enable Xapix pipelines to do your desired actions on your local Home IoT setup, you'll need to run the External Executor. Stopping the process also stops all communication with Xapix servers.
+To enable Xapix pipelines to do your desired actions on your local Home IoT setup, you'll need to run a Xapix External Executor. Stopping the process also stops all communication with Xapix servers.
 
-Generate a random code of 6 characters or more, e.g. "1x2y3z", make it as random and unique as you can. 
+Sign-up or Log into the [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add a Data Source of type "External Executor"
 
-Open a new terminal tab and start the Xapix External Executor.
+Provide a Name for the External Executor
 
-```
-XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=iiot-office-<RANDOM_CODE> ruby ./iiot/external-executor/device_command.rb
-```
+Xapix will now generate and display a unique URL for you to use in your application to connect to Xapix Cloud:
+wss://executor.xapix.dev/api/v1/register?name=<Executor-Name-and-ID>
 
-Log into [Xapix Community Edition](cloud.xapix.io) and in your Xapix project add a Data Source of type "External Executor". In field name enter "iiot-office-<RANDOM_CODE>" and set up required payload parameters as needed, e.g.:
+In the Xapix Data Source settings, set up the required payload parameters as needed, e.g.:
 
 ```
 {
 	"device": "test_bulb",
 	"action": {
-		"cmd": "bulb_on"
+		"cmd": "bulb_on" # or "bulb_off"
 	}
 }
+
 ```
+Open a new terminal tab, install and start the Xapix External Executor.
+
+```
+cd ./iiot/external-executor/
+bundle install
+XAPIX_EXT_EXEC_ENDPOINT=wss://executor.xapix.dev/api/v1/register?name=<Executor-Name-and-ID> ruby ./device_command.rb
+```
+
+Installation was successful if you start seeing log messages about the service's connection status in the Terminal.
+
+Back in the Xapix Data Source, you should now get a succesful response when clicking on Preview Data Source and can complete the setup by clicking Save Data Source.  
 
 Now Xapix pipelines can make use of this Data Source and send commands to your local setup as long as the External Executor is running.
 
