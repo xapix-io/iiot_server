@@ -1,7 +1,10 @@
 require_relative './device'
 
+require_relative './xapix'
 require_relative './audio'
 require_relative './screen'
+
+require_relative './tradfri_hub'
 
 require_relative './plug'
 require_relative './hs100'

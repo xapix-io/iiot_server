@@ -1,4 +1,5 @@
-pytradfri==6.4.0
+requests==2.24.0
+pytradfri==7.0.2
 Flask==1.1.2
 itsdangerous==1.1.0
 Jinja2==2.11.2

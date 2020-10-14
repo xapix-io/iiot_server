@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'color', '~> 1.8'
+gem 'mac_address', '~> 0.0.4'
 gem 'os', '~> 1.1.0'
 gem 'rqrcode', '~> 1.1'
 gem 'sinatra', '~> 2.0.8'

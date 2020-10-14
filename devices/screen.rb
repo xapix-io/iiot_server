@@ -5,7 +5,7 @@ require 'uri/query_params'
 # TODO: add muted option
 class Screen < Device
   def initialize(args)
-    super(args['avg_lag_ms'])
+    super(args)
     @x_position = args['x_position'] || 0
     @padding_pc = args['padding_pc'] || 0
     @installation_name = args['installation_name']
